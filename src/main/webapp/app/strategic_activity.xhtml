@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/app_layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+        <center>ZELS STRATEGIC ACTIVITY</center>
+    </ui:define>
+
+    <ui:define name="content">
+        <f:view>
+
+
+            <h:form>
+                <h3><h:outputText value="List of Strategic Activities"/></h3>
+                <h:dataTable value="#{testStrategicActivityBean.allStrategicActivities}" border="1" cellpadding="3" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="SaId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.saId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{item.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="StrategyId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.strategyId.goal }"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Edit" />
+                        </f:facet>
+                        <h:commandButton value="Edit" action="#{testStrategicActivityBean.edit(item)}" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            
+            <hr />
+            
+
+            <h:panelGroup rendered="#{ testStrategicActivityBean.edit }" >
+                <h:form>
+                    <h4><h:outputText value="Create/Edit"/></h4>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="SaId:" for="saId" />
+                        <h:inputText id="saId" value="#{testStrategicActivityBean.strategicActivity.saId}" title="SaId" required="true" requiredMessage="The SaId field is required."/>
+                        <h:outputLabel value="Name:" for="name" />
+                        <h:inputText id="name" value="#{testStrategicActivityBean.strategicActivity.name}" title="Name" required="true" requiredMessage="The Name field is required."/>
+                        <h:outputLabel value="StrategyId:" for="strategyId" />
+                        <h:selectOneMenu id="strategyId" value="#{testStrategicActivityBean.strategicActivity.strategyId}" title="StrategyId" >
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+            </h:panelGroup>
+            
+        </f:view>
+        
+    </ui:define>
+
+</ui:composition>

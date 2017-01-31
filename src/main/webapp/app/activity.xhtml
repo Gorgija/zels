@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/app_layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+        <center>PERSONAL ACTIVITIEs</center>
+    </ui:define>
+
+    <ui:define name="content">
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <h:dataTable value="#{testActivityBean.allActivitys}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ActivityId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.activityId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{item.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Description"/>
+                        </f:facet>
+                        <h:outputText value="#{item.description}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Start"/>
+                        </f:facet>
+                        <h:outputText value="#{item.start}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="End"/>
+                        </f:facet>
+                        <h:outputText value="#{item.end}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Indikator"/>
+                        </f:facet>
+                        <h:outputText value="#{item.indikator}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Status"/>
+                        </f:facet>
+                        <h:outputText value="#{item.status}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Completed"/>
+                        </f:facet>
+                        <h:outputText value="#{item.completed}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="PriorityId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.priorityId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="StrategicActivitiesId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.strategicActivitiesId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="StrategyId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.strategyId}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Edit" action="#{testActivityBean.editActivity(item)}" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <hr />
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Name:" for="name" />
+                    <h:inputText id="name" value="#{testActivityBean.activity.name}" title="Name" required="true" requiredMessage="The Name field is required."/>
+                    <h:outputLabel value="Description:" for="description" />
+                    <h:inputText id="description" value="#{testActivityBean.activity.description}" title="Description" />
+                    <h:outputLabel value="Start:" for="start" />
+                    <h:inputText id="start" value="#{testActivityBean.activity.start}" title="Start" required="true" requiredMessage="The Start field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="End:" for="end" />
+                    <h:inputText id="end" value="#{testActivityBean.activity.end}" title="End" required="true" requiredMessage="The End field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="Indikator:" for="indikator" />
+                    <h:inputText id="indikator" value="#{testActivityBean.activity.indikator}" title="Indikator" />
+                    <h:outputLabel value="Status:" for="status" />
+                    <h:inputText id="status" value="#{testActivityBean.activity.status}" title="Status" />
+                    <h:outputLabel value="Completed:" for="completed" />
+                    <h:inputText id="completed" value="#{testActivityBean.activity.completed}" title="Completed" />
+                    <h:outputLabel value="PriorityId:" for="priorityId" />
+                    <h:selectOneMenu id="priorityId" value="#{testActivityBean.activity.priorityId}" title="PriorityId" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{testPriorityBean.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="StrategicActivitiesId:" for="strategicActivitiesId" />
+                    <h:selectOneMenu id="strategicActivitiesId" value="#{testActivityBean.activity.strategicActivitiesId}" title="StrategicActivitiesId" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{testStrategicActivityBean.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="StrategyId:" for="strategyId" />
+                    <h:selectOneMenu id="strategyId" value="#{testActivityBean.activity.strategyId}" title="StrategyId" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{testStrategyBean.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+            </h:form>
+
+        </f:view>
+
+    </ui:define>
+
+</ui:composition>

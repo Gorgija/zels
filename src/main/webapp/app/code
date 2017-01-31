@@ -1,0 +1,5 @@
+
+<h:selectOneMenu id="priorityId" value="#{testActivityBean.activity.priorityId}" title="PriorityId" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{testPriorityBean.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>

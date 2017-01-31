@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/app_layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+        <center>ZELS STRATEGY</center>
+    </ui:define>
+
+    <ui:define name="content">
+        STRATEGY TABLE DATA
+        <hr />
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="List of Strategies"/></h1>
+                <h:dataTable value="#{testStrategyBean.strategies}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="StrategyId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.strategyId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Goal"/>
+                        </f:facet>
+                        <h:outputText value="#{item.goal}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+        
+    </ui:define>
+
+</ui:composition>
